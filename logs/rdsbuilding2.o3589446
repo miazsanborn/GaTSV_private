@@ -1,0 +1,23 @@
+SIF image already exists: /mnt/storage/dept/medonc/beroukhim/mia/utils/gatsv_docker_latest.sif
+Starting save_rds pipeline...
+Job ID: 3589446
+Sample: example | Genome: hg19 | Threads: 2
+INFO:    Converting SIF file to temporary sandbox...
+Warning message:
+replacing previous import ‘GenomicRanges::shift’ by ‘data.table::shift’ when loading ‘gUtils’ 
+[1] "Setting Working Directory"
+Loading reference files...
+Reference genome: hg19
+Writing outputs to: /out/
+Using 2 core(s) for parallel processing 
+/data/example.sv.vcf
+Reading file...
+Gathering Metadata...
+Error in eval(jsub, SDenv, parent.frame()) : 
+  object 'tumor_fields' not found
+Calls: save_rds -> process_file
+Execution halted
+INFO:    Cleaning up image...
+================================================
+Done. Outputs are in: /mnt/storage/dept/medonc/beroukhim/mia/J-GaTSV/outputs
+================================================

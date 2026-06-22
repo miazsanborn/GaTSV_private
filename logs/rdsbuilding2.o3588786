@@ -1,0 +1,19 @@
+SIF image already exists: /mnt/storage/dept/medonc/beroukhim/mia/utils/gatsv_docker_latest.sif
+Starting save_rds pipeline...
+Job ID: 3588786
+Sample: example | Genome: hg19 | Threads: 2
+INFO:    Converting SIF file to temporary sandbox...
+Warning message:
+replacing previous import ‘GenomicRanges::shift’ by ‘data.table::shift’ when loading ‘gUtils’ 
+[1] "Setting Working Directory"
+Error in file(filename, "r", encoding = encoding) : 
+  cannot open the connection
+Calls: source -> withVisible -> eval -> eval -> source -> file
+In addition: Warning message:
+In file(filename, "r", encoding = encoding) :
+  cannot open file './save_rds.R': No such file or directory
+Execution halted
+INFO:    Cleaning up image...
+================================================
+Done. Outputs are in: /mnt/storage/dept/medonc/beroukhim/mia/J-GaTSV/outputs
+================================================

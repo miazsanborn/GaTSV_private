@@ -1,0 +1,140 @@
+%$$%                    gr.val shortcut to get mean values of subject
+                        "x" meta data fields in query "y"
+                        (strand-specific)
+%&%                     subset x on y ranges while ignoring strand
+                        (strand-agnostic)
+%&&%                    Subset x on y ranges, strand-specific
+%*%                     x %*% y because it is an R primitive.
+%*%                     Metadata join with coordinates as keys (wrapper
+                        to 'gr.findoverlaps')
+%**%                    shortcut for gr.findoverlaps (strand-specific)
+%+%                     Nudge GRanges right
+%-%                     Shift GRanges left
+%N%                     gr.val shortcut to get total numbers of
+                        intervals in gr2 overlapping with each interval
+                        in gr1, ignoring strand
+%NN%                    gr.val shortcut to get total numbers of
+                        intervals in gr2 overlapping with each interval
+                        in gr1, respecting strand
+%O%                     gr.val shortcut to get fractional overlap of
+                        gr1 by gr2, strand-agnostic
+%OO%                    gr.val shortcut to get fractional overlap of
+                        gr1 by gr2, strand-specific
+%Q%                     query ranges by applying an expression to
+                        ranges metadata
+%QQ%                    query ranges by applying an expression to
+                        GRanges metadata within a GRangesList
+%^^%                    grl.in shortcut
+%_%                     'BiocGenerics::setdiff' shortcut (strand
+                        agnostic)
+%o%                     gr.val shortcut to total per interval width of
+                        overlap of gr1 with gr2, ignoring strand
+%oo%                    gr.val shortcut to total per interval width of
+                        overlap of gr1 with gr2, strand-specific
+DIM                     Always returns a length 2 vector describing
+                        dimensions of input.
+MULTIDIM                Returns a length 2 vector describing first two
+                        dimensions of input, and .
+NCOL2                   Ensuring 2nd dimension of empty vector or NULL
+                        is 1
+anchorlift              anchorlift
+append_by_field_from_seqnames
+                        Appending by field in seqnames to metadata
+                        column
+do.assign               Assign columns or list elements
+dt2gr                   Convert data.table to GRanges
+example_dnase           DNAaseI hypersensitivity sites for hg19A
+example_genes           RefSeq genes for hg19
+gUtils-package          gUtils - Extending GenomicRanges
+gr.breaks               gr.breaks
+gr.chr                  Prepend "chr" to 'GRanges seqlevels'
+gr.collapse             Collapse adjacent ranges
+gr.dice                 Dice up 'GRanges' into 'width = 1' 'GRanges'
+                        spanning the input (warning can produce a very
+                        large object)
+gr.disjoin              GenomicRanges disjoin with some additional
+                        functionality
+gr.dist                 Pairwise distance between two 'GRanges'
+gr.duplicated           Allows to restrict duplicates using "by"
+                        columns and allows in exact matching
+gr.end                  Get the right ends of a 'GRanges'
+gr.findoverlaps         Wrapper to 'GenomicRanges::findOverlaps' with
+                        added functionality
+gr.fix                  "Fixes" 'seqlengths' / 'seqlevels'
+gr.fixseq               Get union of seqlengths from multiple
+                        GRanges-like objects
+gr.flatten              Lay ranges end-to-end onto a derivate
+                        "chromosome"
+gr.flipstrand           Flip strand on 'GRanges'
+gr.in                   Versatile implementation of
+                        'GenomicRanges::findOverlaps'
+gr.match                Alternative 'GenomicRanges::match' that accepts
+                        additional 'gr.findoverlaps' options
+gr.merge                merge GRanges by using coordinates as primary
+                        key
+gr.mid                  Get the midpoints of 'GRanges' ranges
+gr.nochr                Remove chr prefix from GRanges seqlevels
+gr.noval                get rid of mcols on GRanges/GRangesLists
+gr.pairflip             Create pairs of ranges and their strand-inverse
+gr.quantile             gr.quantile
+gr.rand                 Generate random 'GRanges' on genome
+gr.reduce               Minimal overlaps for GRanges/GRangesList
+gr.sample               Randomly sample 'GRanges' intervals within
+                        territory
+gr.simplify             Calculates pairwise distance for rearrangements
+                        represented by 'GRangesList' objects
+gr.start                Get GRanges corresponding to beginning of range
+gr.string               Return UCSC style interval string corresponding
+                        to 'GRanges' pile (ie chr:start-end)
+gr.stripstrand          gr.stripstrand
+gr.sub                  Apply 'gsub' to seqlevels of a 'GRanges'
+gr.sum                  gr.sum
+gr.tile                 Tile ranges across 'GRanges'
+gr.tile.map             gr.tile.map
+gr.trim                 Trims pile of 'GRanges' relative to the
+                        specified <local> coordinates of each range
+gr.val                  Annotate 'GRanges' with values from another
+                        'GRanges'
+gr2dt                   Converts 'GRanges' to 'data.table'
+gr_construct_by         Adding on "by" field(s) to seqnames for more
+                        efficient by queries
+gr_deconstruct_by       Removing by field and random string barcode to
+                        seqnames for more efficient by queries
+grbind                  Concatenate 'GRanges', robust to different
+                        'mcols'
+grl.bind                Concatenate 'GRangesList' objects.
+grl.end                 Get the right ends of a 'GRangesList'
+grl.eval                Evaluate and aggregate expression on GRanges
+                        column in GRangesList
+grl.expand              grl.expand
+grl.hiC                 HiC data for chr14 from Lieberman-Aiden 2009
+                        (in hg19), subsampled to 10,000 interactions
+grl.in                  Check intersection of 'GRangesList' with
+                        windows on genome
+grl.pivot               Pivot a 'GRangesList', inverting "x" and "y"
+grl.reduce              grl.reduce
+grl.shrink              grl.shrink
+grl.start               Get the left ends of a 'GRangesList'
+grl.string              Create string representation of 'GRangesList'
+grl.unlist              Robust unlisting of 'GRangesList' that keeps
+                        track of origin
+grl1                    Fake rearrangement data (set 1)
+grl2                    Fake rearrangement data (set 2)
+hg_seqlengths           Output standard human genome seqlengths
+parse.gr                parse.gr
+parse.grl               parse.grl
+ra.duplicated           ra.duplicated
+ra.overlaps             ra.overlaps
+rebin                   reaggregate WGS bins around a new target value
+rle.query               Queries an 'RleList' representing genomic data
+rleseq                  numbers up within repeating elements of a
+                        vector
+rrbind                  Improved 'rbind' for intersecting/union columns
+                        of 'data.frames' or 'data.tables'
+seg2gr                  Convert GRanges-like data.frame into GRanges
+si                      'Seqinfo' object for hg19
+si2gr                   Create 'GRanges' from 'Seqinfo' or 'BSgenome'
+standardize_segs        Takes and returns segs data frame standardized
+                        to a single format
+streduce                Reduce 'GRanges' and 'GRangesList' to miminal
+                        footprint

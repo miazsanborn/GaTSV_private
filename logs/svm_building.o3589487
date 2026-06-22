@@ -1,0 +1,11 @@
+SIF image already exists: /mnt/storage/dept/medonc/beroukhim/mia/utils/gatsv_docker_latest.sif
+Starting SVM training pipeline...
+Job ID: 3589487
+Threads Allocated: 5
+INFO:    Converting SIF file to temporary sandbox...
+Error in library(caret) : there is no package called ‘caret’
+Execution halted
+INFO:    Cleaning up image...
+================================================
+Done. Check logs or output files inside: /mnt/storage/dept/medonc/beroukhim/mia/J-GaTSV
+================================================

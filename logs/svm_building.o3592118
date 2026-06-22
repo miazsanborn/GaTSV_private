@@ -1,0 +1,36 @@
+Starting SVM training pipeline...
+Job ID: 3592118
+Threads Allocated: 5
+INFO:    Converting SIF file to temporary sandbox...
+Loading required package: ggplot2
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:e1071’:
+
+    element
+
+Loading required package: lattice
+Type 'citation("pROC")' for a citation.
+
+Attaching package: ‘pROC’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, smooth, var
+
+
+Attaching package: ‘yardstick’
+
+The following objects are masked from ‘package:caret’:
+
+    precision, recall, sensitivity, specificity
+
+Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : 
+  contrasts can be applied only to factors with 2 or more levels
+Calls: predict ... model.matrix -> model.matrix.default -> contrasts<-
+Execution halted
+INFO:    Cleaning up image...
+================================================
+Done. Check logs or output files inside: /mnt/storage/dept/medonc/beroukhim/mia/J-GaTSV/svm_train
+================================================

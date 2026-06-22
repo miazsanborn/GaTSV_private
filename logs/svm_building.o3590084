@@ -1,0 +1,42 @@
+Starting SVM training pipeline...
+Job ID: 3590084
+Threads Allocated: 5
+INFO:    Converting SIF file to temporary sandbox...
+Loading required package: ggplot2
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:e1071’:
+
+    element
+
+Loading required package: lattice
+Type 'citation("pROC")' for a citation.
+
+Attaching package: ‘pROC’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, smooth, var
+
+
+Attaching package: ‘yardstick’
+
+The following objects are masked from ‘package:caret’:
+
+    precision, recall, sensitivity, specificity
+
+Error in svm.default(x = X_train, y = y_train, kernel = "radial", cost = 10,  : 
+  NA/NaN/Inf in foreign function call (arg 1)
+Calls: svm -> svm.default
+In addition: Warning messages:
+1: In FUN(newX[, i], ...) : NAs introduced by coercion
+2: In svm.default(x = X_train, y = y_train, kernel = "radial", cost = 10,  :
+  Variable(s) ‘NA’ and ‘log_num_sv_sample’ and ‘tp53_status’ constant. Cannot scale data.
+3: In svm.default(x = X_train, y = y_train, kernel = "radial", cost = 10,  :
+  NAs introduced by coercion
+Execution halted
+INFO:    Cleaning up image...
+================================================
+Done. Check logs or output files inside: /mnt/storage/dept/medonc/beroukhim/mia/J-GaTSV/svm_train
+================================================

@@ -1,0 +1,92 @@
+#!/bin/bash
+
+# ---------------------------------------------------------------------
+# Grid Engine Options
+# ---------------------------------------------------------------------
+#$ -N save_rds_pipeline
+#$ -cwd
+#$ -j y
+#$ -o log_$JOB_ID.out
+#$ -pe smp 2
+##$ -l mem_free=20G,h_vmem=50G
+
+# =============================================================================
+# 1) Environment Setup & Module Loading
+# =============================================================================
+if [ -f /etc/profile.d/modules.sh ]; then
+    . /etc/profile.d/modules.sh
+fi
+
+module load use.own
+module load singularity
+
+# =============================================================================
+# 2) Variables & Paths
+# =============================================================================
+IMAGE_DIR="/mnt/storage/dept/medonc/beroukhim/mia/utils"
+IMAGE="${IMAGE_DIR}/gatsv_docker_latest.sif"
+
+INDIR="/mnt/storage/dept/medonc/beroukhim/mia/J-GaTSV/data"
+OUTDIR="/mnt/storage/dept/medonc/beroukhim/mia/J-GaTSV/outputs"
+SCRIPTS_DIR="/mnt/storage/dept/medonc/beroukhim/mia/J-GaTSV/scripts"
+DATADIR="/mnt/storage/dept/medonc/beroukhim/mia/J-GaTSV/data"   # reference RDS files (gnomad, repeatmasker, etc.)
+
+SAMPLE="example"
+REF="hg19"
+THREADS="${NSLOTS:-2}"
+
+# =============================================================================
+# 3) Memory Fixes (identical to working gaTSV qsub)
+# =============================================================================
+export SINGULARITY_TMPDIR=$TMPDIR
+export SINGULARITY_CACHEDIR=$TMPDIR
+export SINGULARITY_NUMBER_OF_THREADS=2
+export LOSS_OF_SQUASHFS_THREADS=2
+
+# =============================================================================
+# 4) Pull Image if Missing
+# =============================================================================
+mkdir -p "${IMAGE_DIR}"
+mkdir -p "${OUTDIR}"
+
+if [[ ! -f "${IMAGE}" ]]; then
+    echo "Pulling Docker image and converting to SIF..."
+    singularity pull --force "${IMAGE}" docker://wchukwu/gatsv_docker:latest
+else
+    echo "SIF image already exists: ${IMAGE}"
+fi
+
+# =============================================================================
+# 5) Execute Pipeline
+#
+# Bind layout mirrors the directory structure load_files.R expects:
+#   /scripts/         <- your R scripts (setwd here, ../data/ and ../svm/ resolve correctly)
+#   /data/            <- reference RDS files + input VCF + metadata
+#   /svm/             <- GaTSV.rda SVM object
+#   /out/             <- output directory
+#
+# load_files.R uses relative paths ../data/ and ../svm/ from /scripts/,
+# which resolve to /data/ and /svm/ inside the container.
+# Input VCF and metadata are also in DATADIR so they appear at /data/ too.
+# =============================================================================
+echo "Starting save_rds pipeline..."
+echo "Job ID: ${JOB_ID}"
+echo "Sample: ${SAMPLE} | Genome: ${REF} | Threads: ${THREADS}"
+
+singularity exec \
+    --cleanenv \
+    --bind "${DATADIR}:/data" \
+    --bind "${OUTDIR}:/out" \
+    --bind "${SCRIPTS_DIR}:/scripts" \
+    "${IMAGE}" \
+    bash -c "Rscript /scripts/run_save_rds.R \
+        -m /data/example_metadata.txt \
+        -i /data/example.sv.vcf \
+        -o /out/ \
+        -g ${REF} \
+        -c ${THREADS} \
+        -n ${SAMPLE}"
+
+echo "================================================"
+echo "Done. Outputs are in: ${OUTDIR}"
+echo "================================================"

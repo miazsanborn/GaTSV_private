@@ -1,0 +1,71 @@
+#!/bin/bash
+
+# ---------------------------------------------------------------------
+# Grid Engine Options
+# ---------------------------------------------------------------------
+#$ -N train_svm_pipeline
+#$ -cwd
+#$ -j y
+#$ -o log_$JOB_ID.out
+#$ -pe smp 5
+#$ -l mem_free=8G,h_rt=24:00:00
+
+# =============================================================================
+# 1) Environment Setup & Module Loading
+# =============================================================================
+if [ -f /etc/profile.d/modules.sh ]; then
+    . /etc/profile.d/modules.sh
+fi
+
+module load use.own
+module load singularity
+
+# =============================================================================
+# 2) Variables & Paths
+# =============================================================================
+IMAGE_DIR="/mnt/storage/dept/medonc/beroukhim/mia/utils"
+IMAGE="${IMAGE_DIR}/gatsv_svm.sif"
+
+# Input directories and file structures
+WORKING_DIR="/mnt/storage/dept/medonc/beroukhim/mia/J-GaTSV/svm_train"
+SCRIPTS_DIR="/mnt/storage/dept/medonc/beroukhim/mia/J-GaTSV/scripts"
+
+# Dynamically pull threads from SGE slot allocation (defaults to 5 if empty)
+THREADS="${NSLOTS:-5}"
+
+# =============================================================================
+# 3) Memory & Thread Fixes (Prevents out-of-memory extraction crashes)
+# =============================================================================
+export SINGULARITY_TMPDIR=$TMPDIR
+export SINGULARITY_CACHEDIR=$TMPDIR
+export SINGULARITY_NUMBER_OF_THREADS=$THREADS
+export SINGULARITY_SQUASHFS_CPU=$THREADS
+
+# =============================================================================
+# 4) Pull Image if Missing
+# =============================================================================
+mkdir -p "${IMAGE_DIR}"
+#mkdir -p "${WORKING_DIR}/logs"
+
+
+# =============================================================================
+# 5) Execute Pipeline
+#
+# Bind layout bridges your cluster paths to internal container environments:
+#   /scripts/      <- Points to your J-GaTSV pipeline script folder
+#   /working/      <- Points to your user-specific data/output directory on /data
+# =============================================================================
+echo "Starting SVM training pipeline..."
+echo "Job ID: ${JOB_ID}"
+echo "Threads Allocated: ${THREADS}"
+
+singularity exec \
+    --cleanenv \
+    --bind "${SCRIPTS_DIR}:/scripts" \
+    --bind "${WORKING_DIR}:/working" \
+    "${IMAGE}" \
+    bash -c "Rscript /scripts/svm_build.R"
+
+echo "================================================"
+echo "Done. Check logs or output files inside: ${WORKING_DIR}"
+echo "================================================"

@@ -1,0 +1,35 @@
+Starting SVM training pipeline...
+Job ID: 3589899
+Threads Allocated: 5
+INFO:    Converting SIF file to temporary sandbox...
+Loading required package: ggplot2
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:e1071’:
+
+    element
+
+Loading required package: lattice
+Type 'citation("pROC")' for a citation.
+
+Attaching package: ‘pROC’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, smooth, var
+
+
+Attaching package: ‘yardstick’
+
+The following objects are masked from ‘package:caret’:
+
+    precision, recall, sensitivity, specificity
+
+Error in createDataPartition(y, p = 0.66, list = FALSE) : 
+  y must have at least 2 data points
+Execution halted
+INFO:    Cleaning up image...
+================================================
+Done. Check logs or output files inside: /mnt/storage/dept/medonc/beroukhim/mia/J-GaTSV/svm_train
+================================================

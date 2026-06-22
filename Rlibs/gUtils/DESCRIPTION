@@ -1,0 +1,38 @@
+Package: gUtils
+Title: R Package Providing Additional Capabilities and Speed for
+        GenomicRanges Operations
+Version: 0.2.0
+Authors@R: c(
+    person("Jeremiah", "Wala", role = "aut", email = "jwala@broadinstitute.org"),
+    person("Marcin", "Imielinski", role = c("aut", "cre"), email = "mimielinski@nygenome.org"))
+Description: R package providing additional capabilities and speed for GenomicRanges operations.
+biocViews: bioc::3.10/GenomeInfoDb, bioc::3.10/BiocGenerics,
+        bioc::3.10/S4Vectors, bioc::3.10/IRanges, bioc::3.10/XVector,
+        bioc::3.10/GenomicRanges, bioc::3.10/rtracklayer,
+        bioc::3.10/VariantAnnotation
+Depends: R (>= 3.5.0), GenomicRanges (>= 1.30)
+Imports: IRanges (>= 2.12), S4Vectors (>= 0.4), GenomeInfoDb (>= 1.13),
+        parallel, BiocGenerics(>= 0.24), methods, data.table (>= 1.10),
+        Matrix, stringr
+Suggests: BSgenome.Hsapiens.UCSC.hg19, testthat, rtracklayer
+License: GPL-2
+BugReports: http://github.com/mskilab/gUtils/issues
+LazyData: true
+RoxygenNote: 7.3.2
+Encoding: UTF-8
+RemoteType: github
+RemoteHost: api.github.com
+RemoteRepo: gUtils
+RemoteUsername: mskilab
+RemoteRef: HEAD
+RemoteSha: fc24db6f73898c3c25e400e7d627e3e5229003f2
+GithubRepo: gUtils
+GithubUsername: mskilab
+GithubRef: HEAD
+GithubSHA1: fc24db6f73898c3c25e400e7d627e3e5229003f2
+NeedsCompilation: no
+Packaged: 2025-07-25 19:17:23 UTC; od992
+Author: Jeremiah Wala [aut],
+  Marcin Imielinski [aut, cre]
+Maintainer: Marcin Imielinski <mimielinski@nygenome.org>
+Built: R 4.4.0; ; 2025-07-25 19:17:24 UTC; unix
